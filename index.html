@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof!</title>
+    <link rel="icon" type="image/x-icon" href="download-removebg-preview.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffc3fc;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        p {
+            font-size: 20px; 
+        }
+        #page2 #warningText {
+                            font-size: 20px; 
+        }
+
+        .page {
+            display: none;
+            max-width: 80%;
+            text-align: center;
+        }
+        .visible {
+            display: block;
+        }
+        .button {
+            background-color: rgb(0,128,128);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .button:hover {
+            background-color: #50c878;
+        }
+        .imageContainer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .imageContainer img {
+            max-width: 300px;
+            max-height: 300px;
+        }
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        @keyframes confettiAnimation {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .confetti {
+            width: 10px;
+            height: 10px;
+            background-color: #e9e9e9;
+            position: absolute;
+            top: -10px;
+            animation: confettiAnimation 4s ease-out infinite;
+            transform-origin: center;
+            border-radius: 50%;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        .confetti:nth-child(2n) {
+            background-color: #ffd700;
+            animation-delay: 2s;
+        }
+        .confetti:nth-child(3n) {
+            background-color: #ff69b4;
+            animation-delay: 3s;
+        }
+        .confetti:nth-child(4n) {
+            background-color: #00ced1;
+            animation-delay: 4s;
+        }
+    </style>
+</head>
+<body>
+
+<div id="page1" class="page visible">
+    <h1>So, this is to prove to you that you are Beautiful??</h1>
+    <p>I mean I know you are beautiful, let us say elegant and divine beauty like a Greek statue. Graciously Gorgeous, yeah right, this sounds more gentle...</p>
+    <div class="imageContainer">
+        <img id="myImage" src="IMG-20240211-WA0034.jpg" alt="Image">
+    </div>
+    <div>
+        <button class="button" id="okButton">OK</button>
+    </div>
+</div>
+
+<div id="page15" class="page">
+    <h1>Here we go, you adorable lady...</h1>
+    <p>I couldn't think of any more or other ways to prove neither do I know anything other than this, so well this is my best try.</p>
+    <div class="imageContainer">
+        <img id="myImage15" src="two-sitting-cat-aesthetic-one-line-art-vector_1594-337.png" alt="Image">
+    </div>
+    <div>
+        <button class="button" id="nextButton">Next</button>
+    </div>
+</div>
+
+<div id="page2" class="page">
+    <h1>Are you beautiful 'khoobsurat' ?</h1>
+    <div class="imageContainer">
+        <img id="myImage2" src="IMG-20240211-WA0032.jpg" alt="Image">
+    </div>
+    <div>
+        <button class="button" id="yesButton">Yes</button>
+        <button class="button" id="noButton">No</button>
+    </div>
+    <div id="warningText" style="display: none;">Oh please.. You are like a goddess of beauty incarnate. no? rip out my eyes to see yourself from my perspective you will believe 😭😭😭</div>
+</div>
+
+<div id="page3" class="page">
+    <h1>YAYYYY!!!!!!</h1>
+    <p>Hence Proved!</p>
+    <div class="imageContainer">
+        <img id="myImage3" src="IMG-20240211-WA0036.jpg" alt="Image">
+    </div>
+    <div id="confetti"></div>
+    <script>
+        function createConfetti() {
+            var confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            document.getElementById("confetti").appendChild(confetti);
+        }
+        
+        // Create confetti every 100 milliseconds
+        setInterval(createConfetti, 100);
+    </script>
+</div>
+
+<script>
+    document.getElementById("okButton").addEventListener("click", function() {
+        document.getElementById("page1").classList.remove("visible");
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page15").classList.remove("hidden");
+        document.getElementById("page15").classList.add("visible");
+    });
+
+    document.getElementById("nextButton").addEventListener("click", function() {
+        document.getElementById("page15").classList.remove("visible");
+        document.getElementById("page15").classList.add("hidden");
+        document.getElementById("page2").classList.remove("hidden");
+        document.getElementById("page2").classList.add("visible");
+    });
+
+    document.getElementById("noButton").addEventListener("click", function() {
+        document.getElementById("warningText").style.display = "block";
+    });
+
+    document.getElementById("yesButton").addEventListener("click", function() {
+        // Redirect to Page 3
+        document.getElementById("page2").classList.remove("visible");
+        document.getElementById("page2").classList.add("hidden");
+        document.getElementById("page3").classList.remove("hidden");
+        document.getElementById("page3").classList.add("visible");
+        document.getElementById("warningText").style.display = "none"; // Hide warning text
+    });
+</script>
+
+</body>
+</html>
